@@ -1,0 +1,5 @@
+- hosts: localhost
+  tasks:
+    - copy:
+        dest: /etc/hi.txt
+        content: "hi hello"
