@@ -1,0 +1,21 @@
+- hosts: all
+  tasks:
+   - package: 
+       name: "httpd"
+       state: present
+   - copy: 
+       dest: "/var/www/html/index.html"
+       src: "/code/hello.html"
+   - service:  
+       name: "httpd"
+       state: started
+   - firewalld:  
+       port: "80/tcp"
+       state: enabled 
+       immediate: yes
+
+
+- hosts: web
+  tasks:
+   - copy: "src=/code/my.html dest=/var/www/html/h.html"
+     tags: "myweb"

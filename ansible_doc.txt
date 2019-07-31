@@ -1,0 +1,160 @@
+[root@localhost ~]# ansible all  --list-hosts
+
+#### mention inventory ##################
+[root@localhost ~]# vim  /etc/ansible/hosts 
+192.168.56.102  ansible_user=root   ansible_password=welcome
+192.168.56.103  ansible_user=root   ansible_password=welcome
+[root@localhost ~]# ansible all  --list-hosts
+
+[root@localhost ~]# vim  /etc/ansible/ansible.cfg 
+line 62
+host_key_checking = False
+
+in other node for testing:
+--------------------------
+# rpm  -q httpd
+# yum remove  httpd
+# systemctl status httpd
+
+[root@localhost ~]# ansible  all -m package -a  "name=httpd state=present"
+[root@localhost ~]# ansible all  -m  service -a "name=httpd state=started"  
+
+
+
+
+
+
+
+
+
+
+
+
+
+configure web server:-
+----------------------
+
+step1 : install software : httpd
+# ansible all  -m package -a "name=httpd state=present"
+
+
+step 2 : copy web page : 
+source : /code/hello.html     
+dest: /var/www/html/index.html
+
+# ansible all  -m copy -a "dest=/var/www/html/index.html   src=/code/hello.html"
+
+step 3 : service start :  httpd
+# ansible all  -m service -a "name=httpd state=started"
+
+
+step 4 : enable firewall : 80 port / tcp
+# ansible all  -m firewalld -a "port=80/tcp state=enabled immediate=yes"
+
+"idempotance feature"
+
+
+
+to run playbook :
+------------------
+# ansible-playbook   web.yml
+
+
+
+
+[root@localhost ~]# vim /etc/ansible/hosts 
+
+localhost  ansible_user=root   ansible_password=welcome
+
+
+Deploy Docker:
+step1: docker-ce software
+# ansible   mydocker  -m package -a "name=docker-ce state=present"
+
+step2: docker service
+# ansible mydocker  -m service  -a "name=docker state=started"
+
+step3: install python2-pip 
+# ansible mydocker -m package -a "name=python2-pip state=present"
+
+step4: install docker-py  using pip command
+# ansible mydocker -m pip -a "name=docker-py"
+
+step4: docker run 
+# docker run -it  --name myos1 centos:latest
+
+# ansible  mydocker  -m  docker_container -a "name=myos1 image=centos:latest "
+
+
+
+[root@localhost ~]# ansible-doc   -l 
+
+[root@localhost ~]# ansible-doc   service 
+
+[root@localhost ~]# yum whatprovides pip
+[root@localhost ~]# yum  install python2-pip
+[root@localhost ~]# pip  install docker-py 
+
+
+
+
+
+
+
+
+
+
+GIT Doc:
+--------------
+
+[root@localhost ~]# yum  install git
+
+[root@localhost ~]# mkdir /ws
+[root@localhost ~]# cd /ws
+[root@localhost ws]# ls
+[root@localhost ws]# git  init 
+# git config --global user.name "Vimal Daga"
+# git config --global user.email vdaga@lwindia.com
+
+[root@localhost ws]# ls -a
+
+[root@localhost ws]# git status 
+# git add  web.yml
+# git commit  -m  "this is my first commit" web.yml
+
+[root@localhost ws]# git log
+[root@localhost ws]# git diff 14b11f   847c74
+
+
+
+
+[root@localhost ws]# git  remote add  origin "https://github.com/vimallinuxworld13/wellsfargo_test.git"
+
+[root@localhost ws]# git pull origin  master
+
+[root@localhost ws]# git push origin  master 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

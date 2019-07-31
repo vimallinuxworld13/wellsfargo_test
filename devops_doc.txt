@@ -1,0 +1,177 @@
+[root@localhost RHEL-7.4 Server.x86_64]# pwd
+/run/media/root/RHEL-7.4 Server.x86_64
+
+
+
+[root@localhost RHEL-7.4 Server.x86_64]# cd /etc/yum.repos.d/
+[root@localhost yum.repos.d]# vim vimal.repo 
+i: insert mode
+esc: cmd mode
+:wq  save and exit
+
+[root@localhost yum.repos.d]# cat vimal.repo
+[myrepo]
+baseurl=file:///run/media/root/RHEL-7.4\ Server.x86_64
+gpgcheck=0
+
+
+# yum repolist
+
+
+
+[root@localhost yum.repos.d]# pwd
+/etc/yum.repos.d
+[root@localhost yum.repos.d]# cat vimal.repo 
+[myrepo]
+baseurl=file:///run/media/root/RHEL-7.4\ Server.x86_64
+gpgcheck=0
+
+
+[myurl]
+baseurl=ftp://192.168.0.236/rhel7_5_rpm_extras/
+gpgcheck=0
+
+
+
+
+[root@localhost ~]# yum  install  docker-ce 
+y
+
+
+[root@localhost ~]# systemctl restart docker
+
+
+
+[root@localhost ~]# docker info 
+
+# docker image load from tar file
+-----------------------------------
+[root@localhost Downloads]# docker  load  -i  ubuntu-14.04.tar 
+
+[root@localhost Downloads]# docker images
+
+
+[root@localhost Downloads]# docker run -i  -t  ubuntu:14.04
+# exit
+
+# docker ps
+
+
+# docker run -it --name webserver ubuntu:14.04
+# exit
+
+# docker start webserver
+# docker attach webserver
+
+# docker ps -a
+
+[root@localhost ~]# docker rm -f  $(docker ps -a  -q )
+
+
+to come out of your docker os without stopping :
+     left ctrl key + p + q
+
+
+
+Configure apache web server:
+-----------------------------
+[root@localhost ~]# yum  install  httpd 
+[root@localhost ~]# cd /var/www/html/
+[root@localhost html]# vim index.html
+
+[root@localhost html]# systemctl restart httpd 
+
+[root@localhost html]# iptables  -F
+
+url:  http://yourip
+
+
+
+[root@localhost html]# yum  install  php 
+
+[root@localhost html]# cat my.php 
+<?php
+
+print "hi php";
+
+?>
+
+[root@localhost html]# php   my.php 
+hi php
+
+
+
+[root@localhost html]# systemctl restart httpd
+
+
+url:  http://192.168.0.236/my.php
+
+
+
+pre test:
+-------------
+1. use of docker images
+2. jenkins is used for CI or Continuous monitoring
+3. how ansible is different from python or shell scripting
+4. which language used by maven to build
+5. can we use docker to install inside cloud
+6. can we store docker image is git
+7. does we can use jenkins to build code
+8. what is CI/CD pipeline
+9. can we create our customize docker images
+10.can we launch docker container inside docker container
+ 
+
+
+
+[root@localhost ~]# docker run -it --name web1  centos:latest 
+[root@9fadc3b08a74 /]# cd /etc/yum.repos.d/
+[root@9fadc3b08a74 yum.repos.d]# ls
+
+yum  install httpd 
+cd /var/www/html/
+vi index.html
+
+[root@9fadc3b08a74 html]# systemctl restart httpd 
+Failed to get D-Bus connection: Operation not permitted
+[root@9fadc3b08a74 html]# /usr/sbin/httpd  
+
+
+
+[root@9fadc3b08a74 html]# yum  whatprovides   ifconfig 
+[root@9fadc3b08a74 html]# yum  install net-tools 
+
+# docker commit  web1  clone-web:v1
+# docker images
+[root@localhost ~]# docker save  clone-web:v1   -o my.tar
+
+
+[root@7577b1bdf47f html]# vi  /root/.bashrc  
+
+/usr/sbin/httpd
+
+
+[root@localhost ~]# docker commit 7577b1bdf47f  clone-web:v2
+
+[root@localhost ~]# docker login 
+
+# docker tag clone-web:v2  vimal13/clone-web:v2
+[root@localhost ~]# docker push   vimal13/clone-web:v2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

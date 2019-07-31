@@ -1,0 +1,22 @@
+- hosts: localhost
+  tasks:
+   - package:
+       name: docker-ce
+       state: present
+   - service:
+       name: docker
+       state: started
+
+   - package:
+       name: python2-pip
+       state: present
+   - pip:
+       name: docker-py
+
+   - docker_container:
+       name: myd11111
+       image: centos:latest 
+       command: sleep  20
+
+
+
