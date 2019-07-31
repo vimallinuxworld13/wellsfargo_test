@@ -134,6 +134,11 @@ GIT Doc:
 
 [root@localhost ws]# git push origin  master 
 
+# git remote show origin
+
+# git clone https://github.com/vimallinuxworld13/wellsfargo_test
+
+
 
 
 
