@@ -146,6 +146,66 @@ GIT Doc:
 
 
 
+Maven Doc:
+-----------------
+
+[root@localhost ~]# mkdir /jcode
+[root@localhost ~]# cd /jcode
+[root@localhost jcode]# git clone https://github.com/vimallinuxworld13/java-maven-junit 
+
+# cd /jcode/java-maven-junit/src/main/java/com/example/javamavenjunithelloworld
+
+oracle java jdk installed :
+------------------------------
+[root@localhost Downloads]# rpm  -ivh   jdk-8u221-linux-x64.rpm  
+# export JAVA_HOME=/usr/java/jdk1.8.0_221-amd64/
+# export PATH=/usr/java/jdk1.8.0_221-amd64/bin:$PATH
+# java  -version
+
+# vim    /root/.bashrc
+export JAVA_HOME=/usr/java/jdk1.8.0_221-amd64/
+export PATH=/usr/java/jdk1.8.0_221-amd64/bin:$PATH
+
+
+
+maven installed:
+------------------
+[root@localhost Downloads]# tar  -xzf  apache-maven-3.5.4-bin.tar.gz 
+[root@localhost Downloads]# mv  apache-maven-3.5.4  /maven
+[root@localhost Downloads]# cd /maven/
+
+
+[root@localhost maven]# export  MAVEN_HOME=/maven/
+[root@localhost maven]# export  PATH=/maven/bin/:$PATH
+[root@localhost maven]# mvn --version
+
+[root@localhost maven]# vim /root/.bashrc 
+export  MAVEN_HOME=/maven/
+export  PATH=/maven/bin/:$PATH
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
